@@ -16,7 +16,7 @@ Sub box_Initalize()
     Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
 
     With UserForm1
-        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '行数を取得'
         boxNum = 1              '一番上のコンボボックスから処理する'
         For i = 1 To 3          '1列目から3列目まで処理'
             Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
@@ -44,7 +44,7 @@ Sub makeCombobox2()
     Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
 
     With UserForm1
-        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '行数を取得'
         boxNum = 2              '2番目のコンボボックスから処理する'
         For i = 2 To 3          '2列目から3列目まで処理'
             Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
@@ -74,7 +74,7 @@ Sub makeCombobox3()
     Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
 
     With UserForm1
-        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '行数を取得'
         boxNum = 3              '2番目のコンボボックスから処理する'
         Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
         .Controls("ComboBox" & boxNum).Clear 'リストをクリア'
@@ -91,3 +91,20 @@ Sub makeCombobox3()
         Set checkDic = Nothing  '初期化'
     End With
 End Sub
+
+'指定された学年と科目から科目番号を返す関数'
+Function subjectNum(grade As String, mainSubject As String, subSubject As String) As Long
+    Dim lastRow As Long     '行数を格納する変数'
+    Dim i As Long           'forループで必要な変数'
+    Dim result As Long
+    lastRow = Cells(Rows.Count, 2).End(xlUp).Row '行数を取得'
+    findFlag = False                             'フラッグをfalseで初期化'
+    result = -1                              '戻り値の初期値を-1(異常)とする'
+    For i = 2 To lastRow
+        If grade = Cells(i, 1) And mainSubject = Cells(i, 2) And subSubject = Cells(i, 3) Then
+            result = Cells(i, 4)
+            Exit For
+        End If
+    Next i
+    subjectNum = result
+End Function
