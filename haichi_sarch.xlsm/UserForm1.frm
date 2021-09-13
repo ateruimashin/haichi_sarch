@@ -13,7 +13,13 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub ComboBox1_Change()
+    Call Sheet1.makeCombobox2
+End Sub
 
+Private Sub ComboBox2_Change()
+    Call Sheet1.makeCombobox3
+End Sub
 
 '検索を実行する'
 Private Sub CommandButton1_Click()
@@ -73,7 +79,8 @@ Private Sub UserForm_Initialize()
     
     'オプションボタンの状態を取得(性別を取得)'
     OptionButton1 = True
-    
+    'コンボボックスを初期化'
+    Call Sheet1.box_Initalize
     
 End Sub
 
