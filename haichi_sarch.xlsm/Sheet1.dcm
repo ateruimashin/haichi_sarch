@@ -1,0 +1,93 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Sheet1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+'コンボボックス1,2,3を初期化する'
+Sub box_Initalize()
+    Dim checkDic As Object      'ディクショナリ'
+    Dim lastRow As Long         '最大行を格納する変数'
+    Dim i As Long, j As Long    'forループで使う変数'
+    Dim valueName As String     '文字列を格納する変数'
+    Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
+
+    With UserForm1
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        boxNum = 1              '一番上のコンボボックスから処理する'
+        For i = 1 To 3          '1列目から3列目まで処理'
+            Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
+            .Controls("ComboBox" & boxNum).Clear 'リストをクリア'
+
+            For j = 2 To lastRow
+                valueName = Cells(j, i).Value   'j行i列のセルの値を取得'
+                If Not checkDic.exists(valueName) Then  'Dictionaryで重複していないなら追加する'
+                    checkDic.Add valueName, ""  'Dictionaryに追加'
+                    .Controls("ComboBox" & boxNum).AddItem valueName 'コンボボックスに追加'
+                End If
+            Next j
+            boxNum = boxNum + 1 '次のコンボボックスに変更'
+            Set checkDic = Nothing  '初期化'
+        Next i
+    End With
+End Sub
+
+'コンボボックス1と連動してコンボボックス2のリストを作成する'
+Sub makeCombobox2()
+    Dim checkDic As Object      'ディクショナリ'
+    Dim lastRow As Long         '最大行を格納する変数'
+    Dim i As Long, j As Long    'forループで使う変数'
+    Dim valueName As String     '文字列を格納する変数'
+    Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
+
+    With UserForm1
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        boxNum = 2              '2番目のコンボボックスから処理する'
+        For i = 2 To 3          '2列目から3列目まで処理'
+            Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
+            .Controls("ComboBox" & boxNum).Clear 'リストをクリア'
+
+            For j = 2 To lastRow
+                If .ComboBox1.Value = Cells(j, 1) Then  'コンボボックス1の値と一致するなら処理'
+                    valueName = Cells(j, i).Value   'j行i列のセルの値を取得'
+                    If Not checkDic.exists(valueName) Then  'Dictionaryで重複していないなら追加する'
+                        checkDic.Add valueName, ""  'Dictionaryに追加'
+                        .Controls("ComboBox" & boxNum).AddItem valueName 'コンボボックスに追加'
+                    End If
+                End If
+            Next j
+            boxNum = boxNum + 1 '次のコンボボックスに変更'
+            Set checkDic = Nothing  '初期化'
+        Next i
+    End With
+End Sub
+
+'コンボボックス3を作成'
+Sub makeCombobox3()
+    Dim checkDic As Object      'ディクショナリ'
+    Dim lastRow As Long         '最大行を格納する変数'
+    Dim j As Long    'forループで使う変数'
+    Dim valueName As String     '文字列を格納する変数'
+    Dim boxNum As Long          'コンボボックスの番号,上から1,2,3'
+
+    With UserForm1
+        lastRow = Cells(Rows.Count, 2).End(xlUp).Row '各列の行数を取得'
+        boxNum = 3              '2番目のコンボボックスから処理する'
+        Set checkDic = CreateObject("Scripting.Dictionary") '列ごとに初期化'
+        .Controls("ComboBox" & boxNum).Clear 'リストをクリア'
+
+        For j = 2 To lastRow
+            If .ComboBox1.Value = Cells(j, 1) And .ComboBox2.Value = Cells(j, 2) Then  'コンボボックス1,2の値と一致するなら処理'
+                valueName = Cells(j, 3).Value   'j行i列のセルの値を取得'
+                If Not checkDic.exists(valueName) Then  'Dictionaryで重複していないなら追加する'
+                    checkDic.Add valueName, ""  'Dictionaryに追加'
+                    .Controls("ComboBox" & boxNum).AddItem valueName 'コンボボックスに追加'
+                End If
+            End If
+        Next j
+        Set checkDic = Nothing  '初期化'
+    End With
+End Sub
