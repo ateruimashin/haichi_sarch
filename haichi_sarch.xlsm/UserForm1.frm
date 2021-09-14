@@ -24,7 +24,7 @@ End Sub
 
 '検索を実行する'
 Private Sub CommandButton1_Click()
-    Dim lastRow As Long, lastColumn As Long '最終行の位置'
+    Dim lastRow As Long, lastColumn As Long '最終行、最終列の位置'
     Dim allData, resultData()   '全てのデータを格納する、結果のデータを格納する'
     Dim i As Long, j As Long, cnt As Long   'for文とかで使ういつもの変数'
     Dim sex As String   'オプションボタンの値を格納する変数'
@@ -33,7 +33,7 @@ Private Sub CommandButton1_Click()
     '検索するデータの全体をallDataに格納する'
    With Worksheets("meibo") 'meiboシートを参照する'
         lastRow = .Cells(Rows.Count, 1).End(xlUp).Row    '最終行の取得'
-        lastColumn = .Cells(Columns.Count, 1).End(xlToRight).Column '最終列の取得'
+        lastColumn = .Cells(1, Columns.Count).End(xlToLeft).Column '最終列の取得'
         allData = .Range(.Cells(1, 1), .Cells(lastRow, lastColumn)).Value  '最終行までデータを取得する'
     End With
     
@@ -81,7 +81,7 @@ Private Sub CommandButton1_Click()
     'リストボックに表示'
     With ListBox1
         .ColumnCount = 3
-        .ColumnWidths = "50;50;50"
+        .ColumnWidths = "50;70;50"
         .List = resultData
     End With
 End Sub
