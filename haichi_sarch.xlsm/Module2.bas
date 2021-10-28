@@ -1,12 +1,12 @@
 Attribute VB_Name = "Module2"
 Public passwordResult As Boolean
-'ƒƒCƒ“•”•ª'
+'ãƒ¡ã‚¤ãƒ³éƒ¨åˆ†'
 Sub getDataMain()
     Call password
     Call queriesReflesh
     Call margeData
 End Sub
-'ƒpƒXƒ[ƒh”FØ‚ğ‚·‚é'
+'ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰èªè¨¼ã‚’ã™ã‚‹'
 Private Sub password()
     passwordResult = False
     UserForm2.Show
@@ -14,62 +14,62 @@ Private Sub password()
         End
     End If
 End Sub
-'ƒe[ƒuƒ‹‘¶İƒ`ƒFƒbƒN'
+'ãƒ†ãƒ¼ãƒ–ãƒ«å­˜åœ¨ãƒã‚§ãƒƒã‚¯'
 Private Sub queriesReflesh()
-    'dataƒV[ƒg‚Éƒe[ƒuƒ‹‚ª‘¶İ‚·‚é‚©Šm”F'
+    'dataã‚·ãƒ¼ãƒˆã«ãƒ†ãƒ¼ãƒ–ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèª'
     With Worksheets("data")
         If .ListObjects.Count = 0 Then
-            'ƒe[ƒuƒ‹‚ª‚È‚¢ê‡‚ÍƒGƒ‰[ƒƒbƒZ[ƒW‚ğo‚·'
-            MsgBox "ƒf[ƒ^‚ª‘¶İ‚µ‚Ü‚¹‚ñBƒ}ƒjƒ…ƒAƒ‹‚É‰ˆ‚Á‚ÄÄÚ‘±‚µ‚Ä‚­‚¾‚³‚¢B"
+            'ãƒ†ãƒ¼ãƒ–ãƒ«ãŒãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™'
+            MsgBox "ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã«æ²¿ã£ã¦å†æ¥ç¶šã—ã¦ãã ã•ã„ã€‚"
             End
         Else
-            'ƒe[ƒuƒ‹‚ª‘¶İ‚·‚éê‡‚ÍXV‚·‚é'
-            ActiveWorkbook.Connections("ƒNƒGƒŠ - toExcel (6)").Refresh
+            'ãƒ†ãƒ¼ãƒ–ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯æ›´æ–°ã™ã‚‹'
+            ActiveWorkbook.Connections("ã‚¯ã‚¨ãƒª - toExcel (6)").Refresh
         End If
     End With
 End Sub
-'–¼•ë‚Æƒf[ƒ^‚ğŒ‹‡‚³‚¹‚é'
+'åç°¿ã¨ãƒ‡ãƒ¼ã‚¿ã‚’çµåˆã•ã›ã‚‹'
 Private Sub margeData()
-    Dim supreadsheetData        'ƒXƒvƒŒƒbƒhƒV[ƒg‚©‚ç“¾‚½ƒf[ƒ^‚ÆsarchableƒV[ƒg‚Ìƒf[ƒ^'
-    Dim meiboData               '–¼•ë‚Ìƒf[ƒ^'
-    Dim lastRow, lastColumn     'ÅIsAÅI—ñ'
-    Dim i As Long               'For•¶‚Ìindex—p'
-    Dim resultRg As Range       'ŒŸõŒ‹‰Ê‚ÌRangeƒIƒuƒWƒFƒNƒg—p'
+    Dim spreadsheetData        'ã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰ã‚·ãƒ¼ãƒˆã‹ã‚‰å¾—ãŸãƒ‡ãƒ¼ã‚¿ã¨sarchableã‚·ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿'
+    Dim meiboData               'åç°¿ã®ãƒ‡ãƒ¼ã‚¿'
+    Dim lastRow, lastColumn     'æœ€çµ‚è¡Œã€æœ€çµ‚åˆ—'
+    Dim i As Long               'Foræ–‡ã®indexç”¨'
+    Dim resultRg As Range       'æ¤œç´¢çµæœã®Rangeã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨'
 
     
-    'ƒXƒvƒŒƒbƒhƒV[ƒg‚©‚ç“¾‚½ƒf[ƒ^‚ğsarchable‚ÉƒRƒs['
-    Set supreadsheetData = Worksheets("data").UsedRange
-    'sarchableƒV[ƒg‘S‘Ì‚ÌƒZƒ‹‚ğƒNƒŠƒA'
+    'ã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰ã‚·ãƒ¼ãƒˆã‹ã‚‰å¾—ãŸãƒ‡ãƒ¼ã‚¿ã‚’sarchableã«ã‚³ãƒ”ãƒ¼'
+    Set spreadsheetData = Worksheets("data").UsedRange
+    'sarchableã‚·ãƒ¼ãƒˆå…¨ä½“ã®ã‚»ãƒ«ã‚’ã‚¯ãƒªã‚¢'
     Worksheets("sarchable").UsedRange.ClearContents
-    'ƒf[ƒ^‚ğƒRƒs['
-    supreadsheetData.Copy Destination:=Worksheets("sarchable").Range("A1")
+    'ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼'
+    spreadsheetData.Copy Destination:=Worksheets("sarchable").Range("A1")
     With Worksheets("sarchable")
-        'B,C—ñ‚ğ‘}“ü‚·‚é(ut”Ô†‚Æ“d˜b”Ô†‚ª“ü‚é)'
+        'B,Cåˆ—ã‚’æŒ¿å…¥ã™ã‚‹(è¬›å¸«ç•ªå·ã¨é›»è©±ç•ªå·ãŒå…¥ã‚‹)'
         .Columns("B:C").Insert
-        'B1‚ÆC1‚É—ñ‚Ì–¼‘O‚ğ“ü‚ê‚é'
-        .Range("B1").Value = "–¼‘O"
-        .Range("C1").Value = "“d˜b”Ô†"
+        'B1ã¨C1ã«åˆ—ã®åå‰ã‚’å…¥ã‚Œã‚‹'
+        .Range("B1").Value = "åå‰"
+        .Range("C1").Value = "é›»è©±ç•ªå·"
     End With
     
-    '–¼•ë‚Ìƒf[ƒ^‚ğRangeƒIƒuƒWƒFƒNƒg‚Æ‚µ‚Äæ“¾'
+    'åç°¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’Rangeã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã—ã¦å–å¾—'
     With Worksheets("meibo").UsedRange
-        lastRow = .Cells(Rows.Count, 1).End(xlUp).Row    'ÅIs‚Ìæ“¾'
-        lastColumn = .Cells(1, Columns.Count).End(xlToLeft).Column 'ÅI—ñ‚Ìæ“¾'
-        meiboData = .Range(.Cells(2, 1), .Cells(lastRow, lastColumn)).Value  'ÅIs‚Ü‚Åƒf[ƒ^‚ğæ“¾‚·‚é'
+        lastRow = .Cells(Rows.Count, 1).End(xlUp).Row    'æœ€çµ‚è¡Œã®å–å¾—'
+        lastColumn = .Cells(1, Columns.Count).End(xlToLeft).Column 'æœ€çµ‚åˆ—ã®å–å¾—'
+        meiboData = .Range(.Cells(2, 1), .Cells(lastRow, lastColumn)).Value  'æœ€çµ‚è¡Œã¾ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹'
     End With
     
-    'sarchableƒV[ƒg‚Ìut”Ô†‚ğut–¼•ë‚©‚çŒŸõ‚µA–¼‘O‚Æ“d˜b”Ô†‚ğ“ü‚ê‚é'
+    'sarchableã‚·ãƒ¼ãƒˆã®è¬›å¸«ç•ªå·ã‚’è¬›å¸«åç°¿ã‹ã‚‰æ¤œç´¢ã—ã€åå‰ã¨é›»è©±ç•ªå·ã‚’å…¥ã‚Œã‚‹'
     With Worksheets("sarchable")
-        '“d˜b”Ô†‚Ì—ñ‚ÌŒ`®‚ğ•¶š—ñ‚É‚·‚é'
+        'é›»è©±ç•ªå·ã®åˆ—ã®å½¢å¼ã‚’æ–‡å­—åˆ—ã«ã™ã‚‹'
         .UsedRange.Columns("B:C").NumberFormatLocal = "@"
-        'ut”Ô†‚ğut–¼•ë‚©‚çŒŸõ‚·‚é'
+        'è¬›å¸«ç•ªå·ã‚’è¬›å¸«åç°¿ã‹ã‚‰æ¤œç´¢ã™ã‚‹'
         For i = LBound(meiboData) To UBound(meiboData)
             Set resultRg = .UsedRange.Columns(1).Find(meiboData(i, 1), LookIn:=xlValues)
-            'Œ©‚Â‚©‚ê‚Îsarchableƒf[ƒ^‚ÌB—ñ‚ÆC—ñ‚Éƒf[ƒ^‚ğ‘‚«‚Ş'
+            'è¦‹ã¤ã‹ã‚Œã°sarchableãƒ‡ãƒ¼ã‚¿ã®Båˆ—ã¨Cåˆ—ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€'
             If Not resultRg Is Nothing Then
-                '–¼‘O‚ğ‘‚«‚Ş'
+                'åå‰ã‚’æ›¸ãè¾¼ã‚€'
                 .Cells(resultRg.Row, 2).Value = meiboData(i, 2)
-                '“d˜b”Ô†‚ğ•¶š—ñ‚Æ‚µ‚Ä‘‚«‚Ş'
+                'é›»è©±ç•ªå·ã‚’æ–‡å­—åˆ—ã¨ã—ã¦æ›¸ãè¾¼ã‚€'
                 .Cells(resultRg.Row, 3).Value = meiboData(i, 3)
             End If
         Next i
