@@ -252,8 +252,14 @@ Private Sub UserForm_Initialize()
     Call Sheet1.box_Initalize
     'テキストボックスの初期化'
     TextBox1.Text = ""
+    TextBox1.SetFocus
     'リストボックスの初期化'
     ListBox1.Clear
     
+End Sub
+
+'ユーザフォームアクティブ時'
+Private Sub UserForm_Activate()
+    TextBox1.SetFocus
 End Sub
 
