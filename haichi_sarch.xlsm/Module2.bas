@@ -3,9 +3,8 @@ Public passwordResult As Boolean
 'メイン部分'
 Sub getDataMain()
     Call password
-    'Call queriesReflesh''Excel2016でRefleshがうまく動かないことが判明したため'
+    'Call queriesReflesh'
     Call margeData
-    Call endProgress
 End Sub
 'パスワード認証をする'
 Private Sub password()
@@ -23,11 +22,14 @@ Private Sub queriesReflesh()
             'テーブルがない場合はエラーメッセージを出す'
             MsgBox "データが存在しません。マニュアルに沿って再接続してください。"
             End
-        Else
-            'テーブルが存在する場合は更新する'
-            ActiveWorkbook.Connections("クエリ - toExcel (6)").Refresh
         End If
     End With
+    Call reflesh
+End Sub
+'クエリ更新はWithブロック内に'
+Private Sub reflesh()
+    Sheets("data").Select
+    Selection.ListObject.QueryTable.Refresh BackgroundQuery:=False
 End Sub
 '名簿とデータを結合させる'
 Private Sub margeData()
@@ -36,6 +38,7 @@ Private Sub margeData()
     Dim lastRow, lastColumn     '最終行、最終列'
     Dim i As Long               'For文のindex用'
     Dim resultRg As Range       '検索結果のRangeオブジェクト用'
+    Dim myTable As ListObject   'sarchableのlistobject'
 
     
     'スプレッドシートから得たデータをsarchableにコピー'
@@ -50,6 +53,9 @@ Private Sub margeData()
         'B1とC1に列の名前を入れる'
         .Range("B1").Value = "名前"
         .Range("C1").Value = "電話番号"
+        'テーブルに名前をつける'
+        Set myTable = .ListObjects.Item(1)
+        myTable.Name = "mergedTable"
     End With
     
     '名簿のデータをRangeオブジェクトとして取得'
@@ -74,10 +80,9 @@ Private Sub margeData()
                 .Cells(resultRg.Row, 3).Value = meiboData(i, 3)
             End If
         Next i
+        '書き込んだあとテーブルを講師番号をkeyにして昇順にソートする'
+        .Range("mergedTable").Sort Key1:=.Range("mergedTable[講師番号]"), Order1:=xlAscending, Header:=xlYes
     End With
     
 End Sub
 
-Private Sub endProgress()
-    MsgBox "データの更新と結合が完了しました。", vbOKOnly, "処理の完了"
-End Sub
