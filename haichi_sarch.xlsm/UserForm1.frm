@@ -243,6 +243,10 @@ Private Sub CommandButton2_Click()
     Call UserForm_Initialize
 End Sub
 
+Private Sub ListBox1_Click()
+
+End Sub
+
 'ユーザフォームの初期化'
 Private Sub UserForm_Initialize()
     
